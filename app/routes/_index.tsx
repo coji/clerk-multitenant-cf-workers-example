@@ -1,26 +1,14 @@
-import type { LoaderFunctionArgs } from '@remix-run/cloudflare';
-import { json, useLoaderData } from '@remix-run/react';
-import { Markdown } from '~/components';
-import { getFileContentWithCache } from '~/services/github.server';
-import { parse } from '~/services/markdoc.server';
+import type { LoaderFunctionArgs } from '@remix-run/cloudflare'
+import { json, useLoaderData } from '@remix-run/react'
 
-export async function loader({ context }: LoaderFunctionArgs) {
-	const content = await getFileContentWithCache(context, 'README.md');
-
-	return json(
-		{
-			content: parse(content),
-		},
-		{
-			headers: {
-				'Cache-Control': 'public, max-age=3600',
-			},
-		},
-	);
+export const loader = ({ context }: LoaderFunctionArgs) => {
+  return {
+    message: 'hello',
+  }
 }
 
 export default function Index() {
-	const { content } = useLoaderData<typeof loader>();
+  const { message } = useLoaderData<typeof loader>()
 
-	return <Markdown content={content} />;
+  return <div>{message}</div>
 }
