@@ -1,6 +1,15 @@
-import { UserButton } from '@clerk/remix'
+import { SidebarProvider, SidebarTrigger } from '~/components/ui'
+import { AppSidebar } from '~/components/app-sidebar'
+import {
+  UserButton,
+  OrganizationSwitcher,
+  OrganizationProfile,
+  OrganizationList,
+  useOrganization,
+} from '@clerk/remix'
 import { getAuth } from '@clerk/remix/ssr.server'
 import { type LoaderFunction, redirect } from '@remix-run/cloudflare'
+import { Outlet } from '@remix-run/react'
 
 export const loader: LoaderFunction = async (args) => {
   const { userId } = await getAuth(args)
@@ -10,12 +19,17 @@ export const loader: LoaderFunction = async (args) => {
   return {}
 }
 
-export default function AppIndex() {
+export default function AppLayout() {
   return (
-    <div>
-      <h1>Index route</h1>
-      <p>You are signed in!</p>
-      <UserButton />
-    </div>
+    <SidebarProvider>
+      <nav>
+        <AppSidebar />
+      </nav>
+
+      <main>
+        <SidebarTrigger />
+        <Outlet />
+      </main>
+    </SidebarProvider>
   )
 }
