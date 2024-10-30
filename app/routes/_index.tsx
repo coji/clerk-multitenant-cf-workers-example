@@ -1,5 +1,5 @@
 import type { LoaderFunctionArgs } from '@remix-run/cloudflare'
-import { json, Link, useLoaderData } from '@remix-run/react'
+import { Link, useLoaderData } from '@remix-run/react'
 
 export const loader = ({ context }: LoaderFunctionArgs) => {
   return {

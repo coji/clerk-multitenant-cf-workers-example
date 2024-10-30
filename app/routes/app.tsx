@@ -1,15 +1,8 @@
-import { SidebarProvider, SidebarTrigger } from '~/components/ui'
-import { AppSidebar } from '~/components/app-sidebar'
-import {
-  UserButton,
-  OrganizationSwitcher,
-  OrganizationProfile,
-  OrganizationList,
-  useOrganization,
-} from '@clerk/remix'
 import { getAuth } from '@clerk/remix/ssr.server'
 import { type LoaderFunction, redirect } from '@remix-run/cloudflare'
 import { Outlet } from '@remix-run/react'
+import { AppSidebar } from '~/components/app-sidebar'
+import { SidebarProvider, SidebarTrigger } from '~/components/ui'
 
 export const loader: LoaderFunction = async (args) => {
   const { userId } = await getAuth(args)
@@ -26,8 +19,8 @@ export default function AppLayout() {
         <AppSidebar />
       </nav>
 
-      <main>
-        <SidebarTrigger />
+      <main className="relative">
+        <SidebarTrigger className="absolute left-2 top-2" />
         <Outlet />
       </main>
     </SidebarProvider>

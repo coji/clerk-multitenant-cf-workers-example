@@ -1,3 +1,5 @@
+import { ClerkApp } from '@clerk/remix'
+import { rootAuthLoader } from '@clerk/remix/ssr.server'
 import type { LoaderFunction, MetaFunction } from '@remix-run/cloudflare'
 import {
   Links,
@@ -7,8 +9,6 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 import styles from './styles.css?url'
-import { rootAuthLoader } from '@clerk/remix/ssr.server'
-import { ClerkApp } from '@clerk/remix'
 
 export const meta: MetaFunction = () => [
   { name: 'description', content: 'clerk-multitenant-cf-workers-example' },

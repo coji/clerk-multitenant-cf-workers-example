@@ -4,8 +4,8 @@ export default function AppIndexPage() {
   const params = useParams()
 
   return (
-    <div>
-      <h1>{params['*']}</h1>
+    <div className="p-2">
+      <h1 className="ml-8 text-2xl font-semibold capitalize">{params['*']}</h1>
     </div>
   )
 }

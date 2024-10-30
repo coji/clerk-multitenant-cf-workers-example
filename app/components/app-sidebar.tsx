@@ -1,4 +1,6 @@
 import { OrganizationSwitcher } from '@clerk/remix'
+import { NavLink } from '@remix-run/react'
+import { Home, Merge, Pickaxe, Rocket, Settings } from 'lucide-react'
 import {
   Sidebar,
   SidebarContent,
@@ -10,18 +12,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '~/components/ui'
-import {
-  Calendar,
-  Home,
-  Inbox,
-  Merge,
-  Pickaxe,
-  Rocket,
-  Search,
-  Settings,
-  UserRoundCheck,
-} from 'lucide-react'
-import { Link, NavLink } from '@remix-run/react'
 
 const items = [
   {
@@ -76,11 +66,14 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              {/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-              <a href="#">
+              <NavLink
+                to="/app/settings"
+                end
+                className="aria-[current]:bg-primary aria-[current]:text-primary-foreground"
+              >
                 <Settings />
                 <span>Settings</span>
-              </a>
+              </NavLink>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
